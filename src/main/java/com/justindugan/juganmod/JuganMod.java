@@ -14,5 +14,6 @@ public class JuganMod implements ModInitializer {
 		LOGGER.info("JuganMod started.");
 		RulesEnforcer.init();
 		LocatorBarNightToggle.init();
+		PlayerMarkerHooks.init();
 	}
 }
