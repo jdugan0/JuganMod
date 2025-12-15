@@ -1,0 +1,7 @@
+{
+  "near_distance": 64,
+  "far_distance": 192,
+  "sprites": [
+    "juganmod:respawn_icon"
+  ]
+}
