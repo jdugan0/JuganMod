@@ -18,15 +18,14 @@ public class CustomSpawns {
             overworld = server.overworld();
             BlockPos worldSpawn = overworld.getRespawnData().pos();
             System.out.println("World spawn: " + worldSpawn);
-            SPAWNS = generateSpawns(worldSpawn, 1000);
+            SPAWNS = generateSpawns(worldSpawn, 1000, 4); //radius, numSpawns
             System.out.println("New spawns: " + SPAWNS);
         });
     }
 
-    public static List<BlockPos> generateSpawns(BlockPos worldSpawn, int radius){
+    public static List<BlockPos> generateSpawns(BlockPos worldSpawn, int radius, int numSpawns) {
         List<BlockPos> spawnPoints = new ArrayList<>();
         // Example: Generate 4 spawn points in a circle around world spawn
-        int numSpawns = 4;
         for (int i = 0; i < numSpawns; i++) {
             double angle = 2 * Math.PI * i / numSpawns;
             int x = worldSpawn.getX() + (int)(radius * Math.cos(angle));
