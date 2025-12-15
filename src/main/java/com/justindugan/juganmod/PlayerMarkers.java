@@ -2,6 +2,7 @@ package com.justindugan.juganmod;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayer.RespawnConfig;
@@ -12,25 +13,29 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.justindugan.juganmod.SavedMarkers.Marker;
+
 public final class PlayerMarkers {
     private PlayerMarkers() {
     }
 
-    public record Marker(ResourceKey<Level> dimension, BlockPos pos, long gameTime) {
-    }
-
-    private static final Map<UUID, Marker> LAST_DEATH = new ConcurrentHashMap<>();
-
     public static void setLastDeath(ServerPlayer player) {
+        MinecraftServer server = player.level().getServer();
         ServerLevel level = player.level();
-        JuganMod.LOGGER.info("Player died at: " + player.blockPosition());
-        LAST_DEATH.put(
+        SavedMarkers data = SavedMarkers.get(server);
+
+        data.setLastDeath(
                 player.getUUID(),
-                new Marker(level.dimension(), player.blockPosition(), level.getGameTime()));
+                new SavedMarkers.Marker(level.dimension(), player.blockPosition(), level.getGameTime()));
     }
 
-    public static Marker getLastDeath(ServerPlayer player) {
-        return LAST_DEATH.get(player.getUUID());
+    public static Optional<SavedMarkers.Marker> getLastDeath(ServerPlayer player) {
+        MinecraftServer server = player.level().getServer();
+        return SavedMarkers.get(server).getLastDeath(player.getUUID());
+    }
+
+    public static Map<UUID, Marker> getDeathMap(MinecraftServer server) {
+        return SavedMarkers.get(server).getMap();
     }
 
     public static Optional<Marker> getRespawnMarker(ServerPlayer player) {
