@@ -25,5 +25,6 @@ public class JuganMod implements ModInitializer {
 		JuganCommands.init();
 		WaypointRanges.init();
 		CustomSpawns.init();
+		PlayerSpawnHandler.init();
 	}
 }

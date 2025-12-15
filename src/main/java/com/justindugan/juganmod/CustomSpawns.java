@@ -43,6 +43,4 @@ public class CustomSpawns {
         return level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos);
     }
 
-
-
 }
