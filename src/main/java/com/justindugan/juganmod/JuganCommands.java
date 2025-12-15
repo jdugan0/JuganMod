@@ -61,7 +61,17 @@ public final class JuganCommands {
                                     src.sendSystemMessage(formatMarker("Last death", death));
                                 }
                                 return Command.SINGLE_SUCCESS;
-                            })));
+                            }))
+                    .then(literal("spawnMapSize")
+                            .requires(src -> src.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(
+                                    ctx -> {
+                                        CommandSourceStack src = ctx.getSource();
+                                        MinecraftServer server = src.getServer();
+                                        int size = SavedSpawns.get(server).size();
+                                        src.sendSystemMessage(Component.literal(String.format("Size: %d", size))
+                                                .withStyle(ChatFormatting.YELLOW));
+                                        return Command.SINGLE_SUCCESS;
+                                    })));
         });
     }
 
