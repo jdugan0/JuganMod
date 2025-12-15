@@ -45,14 +45,16 @@ public final class WaypointManager {
     static Waypoint.Icon deathIcon() {
         Waypoint.Icon icon = new Waypoint.Icon();
         icon.style = DEATH_STYLE;
-        icon.color = Optional.empty();
+        icon.color = Optional.of(0xFFFFFF);
+        ;
         return icon;
     }
 
     static Waypoint.Icon respawnIcon() {
         Waypoint.Icon icon = new Waypoint.Icon();
         icon.style = RESPAWN_STYLE;
-        icon.color = Optional.empty();
+        icon.color = Optional.of(0xFFFFFF);
+        ;
         return icon;
     }
 
