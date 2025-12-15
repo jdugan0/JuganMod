@@ -22,9 +22,16 @@ public class PlayerSpawnHandler {
          */
 
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            // if (oldPlayer.RespawnConfig == null) {
-            // return; // Let the default respawn behavior handle it
-            // }
+            if (newPlayer.getRespawnConfig() == null) {
+                SavedSpawns save = SavedSpawns.get(newPlayer.level().getServer());
+                BlockPos spawnPosition = save.getSpawn(newPlayer.getUUID()).orElse(null);
+                newPlayer.connection.teleport( // teleport them
+                        spawnPosition.getX() + 0.5,
+                        spawnPosition.getY(),
+                        spawnPosition.getZ() + 0.5,
+                        newPlayer.getYRot(),
+                        newPlayer.getXRot());
+            }
         });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -42,8 +49,7 @@ public class PlayerSpawnHandler {
                         spawnPosition.getZ() + 0.5,
                         player.getYRot(),
                         player.getXRot());
-                System.out
-                        .println("Assigning spawn for player " + player.getName().getString() + " at " + spawnPosition);
+                System.out.println("Assigning spawn for player " + player.getName().getString() + " at " + spawnPosition);
                 System.out.println("Teleporting player " + player.getName().getString() + " to " + spawnPosition);
             }
         });
