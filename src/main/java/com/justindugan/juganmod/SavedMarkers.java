@@ -16,14 +16,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public final class SavedMarkers extends SavedData {
-    public record Marker(ResourceKey<Level> dimension, BlockPos pos, long gameTime) {
-        public static final Codec<Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                ResourceKey.codec(Registries.DIMENSION)
-                        .fieldOf("dim").forGetter(Marker::dimension),
-                BlockPos.CODEC.fieldOf("pos").forGetter(Marker::pos),
-                Codec.LONG.fieldOf("t").forGetter(Marker::gameTime)).apply(instance, Marker::new));
-    }
+    public final class SavedMarkers extends SavedData {
+        public record Marker(ResourceKey<Level> dimension, BlockPos pos, long gameTime) {
+            public static final Codec<Marker> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                    ResourceKey.codec(Registries.DIMENSION)
+                            .fieldOf("dim").forGetter(Marker::dimension),
+                    BlockPos.CODEC.fieldOf("pos").forGetter(Marker::pos),
+                    Codec.LONG.fieldOf("t").forGetter(Marker::gameTime)).apply(instance, Marker::new));
+        }
 
     private static final Codec<UUID> UUID_CODEC = Codec.STRING.xmap(UUID::fromString, UUID::toString);
 
