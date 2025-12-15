@@ -18,6 +18,7 @@ public class RulesEnforcer {
     private static void applyWorldRules(GameRules rules, MinecraftServer server) {
         rules.set(GameRules.REDUCED_DEBUG_INFO, true, server);
         rules.set(GameRules.PLAYERS_SLEEPING_PERCENTAGE, 101, server);
+        rules.set(GameRules.LOCATOR_BAR, true, server);
         JuganMod.LOGGER.info("Gamerules set.");
     }
 }

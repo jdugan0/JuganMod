@@ -1,11 +1,14 @@
 {
 	"schemaVersion": 1,
 	"id": "juganmod",
-	"version": "${version}",
+	"version": "0.1",
 	"name": "JuganMod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Mod for JuganSMP.",
 	"authors": [
-		"Me!"
+		"Justin Dugan",
+		"Austin Newby",
+		"Emma Verhagen",
+		"Nyx Evans"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
