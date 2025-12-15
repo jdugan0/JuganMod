@@ -20,7 +20,7 @@ public class RulesEnforcer {
         rules.set(GameRules.PLAYERS_SLEEPING_PERCENTAGE, 101, server);
         rules.set(GameRules.LOCATOR_BAR, true, server);
         try {
-            rules.set(GameRules.MAX_MINECART_SPEED, 100, server);
+            rules.set(GameRules.MAX_MINECART_SPEED, 65, server);
         }
         catch (IllegalArgumentException e){
             JuganMod.LOGGER.error("No minecart experiments :(");
