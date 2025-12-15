@@ -46,7 +46,6 @@ public final class WaypointManager {
         Waypoint.Icon icon = new Waypoint.Icon();
         icon.style = DEATH_STYLE;
         icon.color = Optional.of(0xFFFFFF);
-        ;
         return icon;
     }
 
