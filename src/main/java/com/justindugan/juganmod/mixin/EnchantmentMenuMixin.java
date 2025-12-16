@@ -22,34 +22,36 @@ public abstract class EnchantmentMenuMixin {
     private void jugan$filterEnchantmentTableRoll(
             RegistryAccess registryAccess, ItemStack stack, int option, int cost,
             CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
+
         List<EnchantmentInstance> original = cir.getReturnValue();
         if (original.isEmpty())
             return;
+
         int cap = EnchantCapRules.getCap(stack);
         if (cap <= 0)
             return;
 
         int already = EnchantCapRules.countItemEnchants(stack, false);
         int remaining = Math.max(0, cap - already);
-
         if (remaining == 0) {
             cir.setReturnValue(List.of());
             return;
         }
         List<EnchantmentInstance> filtered = original.stream()
-                .map(ei -> new EnchantmentInstance(
-                        ei.enchantment(),
-                        Math.min(ei.level(), EnchantTableRules.maxTableLevel(ei.enchantment()))))
+                .filter(ei -> ei.level() <= EnchantTableRules.maxTableLevel(ei.enchantment()))
                 .toList();
 
-        if (filtered.size() <= remaining) {
-            cir.setReturnValue(filtered);
+        if (filtered.isEmpty()) {
+            cir.setReturnValue(List.of());
             return;
         }
-        filtered = filtered.stream()
-                .sorted((a, b) -> Integer.compare(b.level(), a.level()))
-                .limit(remaining)
-                .toList();
+
+        if (filtered.size() > remaining) {
+            filtered = filtered.stream()
+                    .sorted((a, b) -> Integer.compare(b.level(), a.level()))
+                    .limit(remaining)
+                    .toList();
+        }
 
         cir.setReturnValue(filtered);
     }

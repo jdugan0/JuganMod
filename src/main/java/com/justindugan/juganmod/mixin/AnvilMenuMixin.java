@@ -34,19 +34,23 @@ public abstract class AnvilMenuMixin {
   private void jugan$afterCreateResult(CallbackInfo ci) {
     AnvilMenu self = (AnvilMenu) (Object) this;
     ItemStack result = self.getSlot(self.getResultSlot()).getItem();
+
     if (cost.get() > MAX_COST)
       cost.set(MAX_COST);
-    if (!result.isEmpty()) {
-      int cap = EnchantCapRules.getCap(result);
-      int n = EnchantCapRules.countItemEnchants(result, false);
-      if (cap > 0 && n > cap) {
-        result = ItemStack.EMPTY;
-        cost.set(0);
-        self.getSlot(self.getResultSlot()).set(ItemStack.EMPTY);
-      }
+
+    if (result.isEmpty())
+      return;
+
+    int cap = EnchantCapRules.getCap(result);
+    int n = EnchantCapRules.countItemEnchants(result, false);
+    if (cap > 0 && n > cap) {
+      cost.set(0);
+      self.getSlot(self.getResultSlot()).set(ItemStack.EMPTY);
+      return;
     }
-    result.set(
-        DataComponents.REPAIR_COST,
+
+    result.set(DataComponents.REPAIR_COST,
         Math.min(result.getOrDefault(DataComponents.REPAIR_COST, 0), REPAIR_COST_CAP));
   }
+
 }
