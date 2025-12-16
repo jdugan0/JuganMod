@@ -14,7 +14,6 @@ public class EnchantToolTip {
 
             int cap = EnchantCapRules.getCap(stack);
             int n = EnchantCapRules.countItemEnchants(stack, false);
-            JuganMod.LOGGER.info("Enchants: " + n + " Cap: " + cap);
             if (cap > 0 && n > 0 && n < cap) {
                 lines.add(Component.literal("Enchants: " + n + "/" + cap)
                         .withStyle(ChatFormatting.DARK_GRAY));
