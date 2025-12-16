@@ -17,7 +17,7 @@ import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.item.ItemStack;
 
 @Mixin(AnvilMenu.class)
-public abstract class EnchantMixins {
+public abstract class AnvilMenuMixin {
   @Shadow
   @Final
   private DataSlot cost;
@@ -42,6 +42,7 @@ public abstract class EnchantMixins {
       if (cap > 0 && n > cap) {
         result = ItemStack.EMPTY;
         cost.set(0);
+        self.getSlot(self.getResultSlot()).set(ItemStack.EMPTY);
       }
     }
     result.set(
