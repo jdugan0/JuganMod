@@ -1,5 +1,6 @@
 package com.justindugan.juganmod.spawns;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -7,7 +8,9 @@ import java.util.UUID;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Relative;
 
 public class PlayerSpawnHandler {
     public static void init() {
@@ -25,12 +28,17 @@ public class PlayerSpawnHandler {
             if (newPlayer.getRespawnConfig() == null) {
                 SavedSpawns save = SavedSpawns.get(newPlayer.level().getServer());
                 BlockPos spawnPosition = save.getSpawn(newPlayer.getUUID()).orElse(null);
-                newPlayer.connection.teleport( // teleport them
-                        spawnPosition.getX() + 0.5,
-                        spawnPosition.getY(),
-                        spawnPosition.getZ() + 0.5,
+                if (spawnPosition == null) {
+                    return;
+                }
+                ServerLevel level = newPlayer.level().getServer().overworld();
+                level.getChunkAt(spawnPosition);
+                newPlayer.teleportTo(level,
+                        spawnPosition.getX() + 0.5, spawnPosition.getY(), spawnPosition.getZ() + 0.5,
+                        EnumSet.noneOf(Relative.class),
                         newPlayer.getYRot(),
-                        newPlayer.getXRot());
+                        newPlayer.getXRot(),
+                        true);
             }
         });
 
@@ -42,15 +50,16 @@ public class PlayerSpawnHandler {
                                                                                                             // SPAWNS.size()->#spawn
                                                                                                             // points
                 save.setSpawn(player.getUUID(), spawnPosition);
+                ServerLevel level = server.overworld();
 
-                player.connection.teleport( // teleport them
-                        spawnPosition.getX() + 0.5,
-                        spawnPosition.getY(),
-                        spawnPosition.getZ() + 0.5,
+                level.getChunkAt(spawnPosition);
+                player.teleportTo(
+                        level,
+                        spawnPosition.getX() + 0.5, spawnPosition.getY(), spawnPosition.getZ() + 0.5,
+                        EnumSet.noneOf(Relative.class),
                         player.getYRot(),
-                        player.getXRot());
-                System.out.println("Assigning spawn for player " + player.getName().getString() + " at " + spawnPosition);
-                System.out.println("Teleporting player " + player.getName().getString() + " to " + spawnPosition);
+                        player.getXRot(),
+                        true);
             }
         });
     }

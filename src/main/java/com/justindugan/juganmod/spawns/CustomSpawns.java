@@ -25,7 +25,6 @@ public class CustomSpawns {
 
     public static List<BlockPos> generateSpawns(BlockPos worldSpawn, int radius, int numSpawns) {
         List<BlockPos> spawnPoints = new ArrayList<>();
-        // Example: Generate 4 spawn points in a circle around world spawn
         for (int i = 0; i < numSpawns; i++) {
             double angle = 2 * Math.PI * i / numSpawns;
             int x = worldSpawn.getX() + (int)(radius * Math.cos(angle));
