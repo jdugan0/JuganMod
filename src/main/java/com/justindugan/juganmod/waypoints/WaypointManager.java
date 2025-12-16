@@ -1,8 +1,11 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.waypoints;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.justindugan.juganmod.DayNight;
+import com.justindugan.juganmod.JuganMod;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;

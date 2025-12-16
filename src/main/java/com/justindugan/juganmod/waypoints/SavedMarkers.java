@@ -1,4 +1,4 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.waypoints;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,4 +1,4 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.waypoints;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.justindugan.juganmod.SavedMarkers.Marker;
+import com.justindugan.juganmod.waypoints.SavedMarkers.Marker;
 
 public final class PlayerMarkers {
     private PlayerMarkers() {

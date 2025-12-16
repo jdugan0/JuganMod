@@ -1,4 +1,4 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.waypoints;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.server.level.ServerPlayer;

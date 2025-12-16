@@ -1,4 +1,4 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.spawns;
 
 import java.util.HashMap;
 import java.util.Map;

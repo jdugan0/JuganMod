@@ -9,6 +9,12 @@ import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.justindugan.juganmod.spawns.CustomSpawns;
+import com.justindugan.juganmod.spawns.PlayerSpawnHandler;
+import com.justindugan.juganmod.waypoints.PlayerMarkerHooks;
+import com.justindugan.juganmod.waypoints.WaypointManager;
+import com.justindugan.juganmod.waypoints.WaypointRanges;
+
 public class JuganMod implements ModInitializer {
 	public static final String MOD_ID = "juganmod";
 	public static final Identifier LOCATOR_OFFLINE = Identifier.fromNamespaceAndPath(MOD_ID, "locator_offline");

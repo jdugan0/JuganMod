@@ -1,6 +1,9 @@
 package com.justindugan.juganmod;
 
-import com.justindugan.juganmod.SavedMarkers.Marker;
+import com.justindugan.juganmod.spawns.SavedSpawns;
+import com.justindugan.juganmod.waypoints.PlayerMarkers;
+import com.justindugan.juganmod.waypoints.SavedMarkers;
+import com.justindugan.juganmod.waypoints.SavedMarkers.Marker;
 import com.mojang.brigadier.Command;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.ChatFormatting;

@@ -1,7 +1,11 @@
-package com.justindugan.juganmod;
+package com.justindugan.juganmod.waypoints;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.justindugan.juganmod.DayNight;
+import com.justindugan.juganmod.JuganMod;
+import com.justindugan.juganmod.JuganModAttributes;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
