@@ -4,7 +4,8 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"AnvilMenuMixin",
-		"EnchantmentMenuMixin"
+		"EnchantmentMenuMixin",
+		"DisableVanillaEnchantedBookTradeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
