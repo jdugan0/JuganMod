@@ -32,6 +32,9 @@ public final class EnchantCapRules {
   }
 
   public static int getCap(ItemStack stack) {
+    if (stack.is(Items.ENCHANTED_BOOK))
+      return 0;
+
     if (stack.is(Items.ELYTRA))
       return CAP_ELYTRA;
     if (stack.is(Items.SHIELD))

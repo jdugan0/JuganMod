@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.justindugan.juganmod.enchants.EnchantCapRules;
 
@@ -22,13 +23,8 @@ public abstract class AnvilMenuMixin {
   @Final
   private DataSlot cost;
 
-  private static final int MAX_COST = 40;
-  private static final int REPAIR_COST_CAP = 5;
-
-  @ModifyConstant(method = "createResult", constant = @Constant(intValue = 40))
-  private int jugan$disableTooExpensive(int original) {
-    return Integer.MAX_VALUE;
-  }
+  private static final int MAX_COST = 35;
+  private static final int REPAIR_COST_CAP = 2;
 
   @Inject(method = "createResult", at = @At("TAIL"))
   private void jugan$afterCreateResult(CallbackInfo ci) {

@@ -3,7 +3,8 @@
 	"package": "com.justindugan.juganmod.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"AnvilMenuMixin"
+		"AnvilMenuMixin",
+		"EnchantmentMenuMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

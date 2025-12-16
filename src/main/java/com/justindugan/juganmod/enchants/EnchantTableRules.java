@@ -11,8 +11,7 @@ public final class EnchantTableRules {
 
   public static int maxTableLevel(Holder<Enchantment> enchantment) {
     int vanillaMax = enchantment.value().getMaxLevel();
-
-    // Minimal, explicit nerfs
+    
     if (enchantment.is(Enchantments.SHARPNESS))
       return Math.min(vanillaMax, 4);
 

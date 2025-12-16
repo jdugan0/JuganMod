@@ -37,9 +37,12 @@ public abstract class EnchantmentMenuMixin {
             cir.setReturnValue(List.of());
             return;
         }
-        List<EnchantmentInstance> filtered = original.stream()
-                .filter(ei -> ei.level() <= EnchantTableRules.maxTableLevel(ei.enchantment()))
-                .toList();
+        List<EnchantmentInstance> filtered = original.stream().map(ei -> {
+            int max = EnchantTableRules.maxTableLevel(ei.enchantment());
+            if (ei.level() <= max)
+                return ei;
+            return new EnchantmentInstance(ei.enchantment(), max);
+        }).toList();
 
         if (filtered.isEmpty()) {
             cir.setReturnValue(List.of());
