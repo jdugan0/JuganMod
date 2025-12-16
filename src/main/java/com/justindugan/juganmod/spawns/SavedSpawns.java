@@ -33,7 +33,7 @@ public final class SavedSpawns extends SavedData {
             null);
 
     public SavedSpawns(Map<UUID, BlockPos> playerSpawns) {
-        this.playerSpawns = playerSpawns;
+        this.playerSpawns = new HashMap<>(playerSpawns);
     }
 
     public SavedSpawns() {
@@ -41,7 +41,7 @@ public final class SavedSpawns extends SavedData {
     }
 
     private Map<UUID, BlockPos> playerSpawnsView() {
-        return playerSpawns;
+        return Map.copyOf(playerSpawns);
     }
 
     public static SavedSpawns get(MinecraftServer server) {
