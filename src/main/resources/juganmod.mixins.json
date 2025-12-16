@@ -3,6 +3,7 @@
 	"package": "com.justindugan.juganmod.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"EnchantMixins"
 	],
 	"injectors": {
 		"defaultRequire": 1
