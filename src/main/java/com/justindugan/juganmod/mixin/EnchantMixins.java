@@ -22,7 +22,8 @@ public abstract class EnchantMixins {
   @Final
   private DataSlot cost;
 
-  private static final int MAX_COST = 80;
+  private static final int MAX_COST = 40;
+  private static final int REPAIR_COST_CAP = 5;
 
   @ModifyConstant(method = "createResult", constant = @Constant(intValue = 40))
   private int jugan$disableTooExpensive(int original) {
@@ -35,7 +36,6 @@ public abstract class EnchantMixins {
     ItemStack result = self.getSlot(self.getResultSlot()).getItem();
     if (cost.get() > MAX_COST)
       cost.set(MAX_COST);
-
     if (!result.isEmpty()) {
       int cap = EnchantCapRules.getCap(result);
       int n = EnchantCapRules.countItemEnchants(result, false);
@@ -44,5 +44,8 @@ public abstract class EnchantMixins {
         cost.set(0);
       }
     }
+    result.set(
+        DataComponents.REPAIR_COST,
+        Math.min(result.getOrDefault(DataComponents.REPAIR_COST, 0), REPAIR_COST_CAP));
   }
 }
