@@ -1,6 +1,5 @@
 package com.justindugan.juganmod;
 
-import com.justindugan.juganmod.enchants.EnchantToolTip;
 import com.justindugan.juganmod.mixin.AnvilMenuMixin;
 
 import net.fabricmc.api.ClientModInitializer;

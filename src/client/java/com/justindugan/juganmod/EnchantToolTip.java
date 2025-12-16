@@ -1,6 +1,5 @@
-package com.justindugan.juganmod.enchants;
-
-import com.justindugan.juganmod.JuganMod;
+package com.justindugan.juganmod;
+import com.justindugan.juganmod.enchants.EnchantCapRules;
 
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.ChatFormatting;
