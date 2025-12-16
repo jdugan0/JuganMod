@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.justindugan.juganmod.spawns.CustomSpawns;
 import com.justindugan.juganmod.spawns.PlayerSpawnHandler;
+import com.justindugan.juganmod.villagers.NewVillagerOffers;
 import com.justindugan.juganmod.waypoints.PlayerMarkerHooks;
 import com.justindugan.juganmod.waypoints.WaypointManager;
 import com.justindugan.juganmod.waypoints.WaypointRanges;
@@ -33,5 +34,6 @@ public class JuganMod implements ModInitializer {
 		CustomSpawns.init();
 		PlayerSpawnHandler.init();
 		WaypointManager.init();
+		NewVillagerOffers.init();
 	}
 }
