@@ -67,22 +67,26 @@ public final class NewVillagerOffers {
             spec(Enchantments.SWIFT_SNEAK, 1, 3, 36, 50, 6, 9),
             spec(Enchantments.SOUL_SPEED, 1, 3, 34, 48, 6, 9),
             spec(Enchantments.SHARPNESS, 5, 6, 40, 52, 6, 9),
-            spec(Enchantments.PROTECTION, 5, 6, 40, 52, 6, 9));
+            spec(Enchantments.PROTECTION, 4, 5, 40, 52, 6, 9));
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
-            factories.add((level, entity, random) -> librarianOffer((ServerLevel) level, random, LIB_T4, 0.05f));
             factories.add((level, entity, random) -> librarianOffer((ServerLevel) level, random, LIB_T4, 0.05f));
         });
 
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
             factories.add((level, entity, random) -> librarianOffer((ServerLevel) level, random, LIB_T5, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
+            factories.add((level, entity, random) -> librarianOffer((ServerLevel) level, random, LIB_T4, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
             factories.add((level, entity, random) -> librarianOffer((ServerLevel) level, random, LIB_T5, 0.05f));
         });
 
         TradeOfferHelper.registerWanderingTraderOffers(factories -> {
-            factories.addOffersToPool(WanderingTraderOffersBuilder.SELL_SPECIAL_ITEMS_POOL,
-                    (level, entity, random) -> wanderingRareOffer((ServerLevel) level, random, 0.04f));
             factories.addOffersToPool(WanderingTraderOffersBuilder.SELL_SPECIAL_ITEMS_POOL,
                     (level, entity, random) -> wanderingRareOffer((ServerLevel) level, random, 0.04f));
         });
@@ -97,6 +101,77 @@ public final class NewVillagerOffers {
                     (level, entity, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, 45),
                             new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 1, 0, 0.04f));
         });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
+            factories.add((lvl, entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    EnchantmentHelper.enchantItem(
+                            random,
+                            new ItemStack(Items.BOOK),
+                            5,
+                            entity.level().registryAccess()
+                                    .lookupOrThrow(Registries.ENCHANTMENT)
+                                    .listElements()
+                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                    3, 10, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
+            factories.add((lvl, entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    EnchantmentHelper.enchantItem(
+                            random,
+                            new ItemStack(Items.BOOK),
+                            5,
+                            entity.level().registryAccess()
+                                    .lookupOrThrow(Registries.ENCHANTMENT)
+                                    .listElements()
+                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                    3, 10, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
+            factories.add((lvl, entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    EnchantmentHelper.enchantItem(
+                            random,
+                            new ItemStack(Items.BOOK),
+                            10,
+                            entity.level().registryAccess()
+                                    .lookupOrThrow(Registries.ENCHANTMENT)
+                                    .listElements()
+                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                    3, 10, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
+            factories.add((lvl, entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    EnchantmentHelper.enchantItem(
+                            random,
+                            new ItemStack(Items.BOOK),
+                            10,
+                            entity.level().registryAccess()
+                                    .lookupOrThrow(Registries.ENCHANTMENT)
+                                    .listElements()
+                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                    3, 10, 0.05f));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
+            factories.add((lvl, entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    EnchantmentHelper.enchantItem(
+                            random,
+                            new ItemStack(Items.BOOK),
+                            15,
+                            entity.level().registryAccess()
+                                    .lookupOrThrow(Registries.ENCHANTMENT)
+                                    .listElements()
+                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                    3, 10, 0.05f));
+        });
+
     }
 
     private static MerchantOffer librarianOffer(ServerLevel level, RandomSource random, List<EnchantSpec> pool,
