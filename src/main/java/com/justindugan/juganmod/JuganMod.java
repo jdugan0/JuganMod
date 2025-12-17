@@ -35,5 +35,6 @@ public class JuganMod implements ModInitializer {
 		PlayerSpawnHandler.init();
 		WaypointManager.init();
 		NewVillagerOffers.init();
+        ModDataComponents.register();
 	}
 }

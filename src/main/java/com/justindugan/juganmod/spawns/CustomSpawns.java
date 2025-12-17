@@ -10,14 +10,16 @@ import net.minecraft.core.BlockPos;
 
 public class CustomSpawns {
     
-    public static List<BlockPos> SPAWNS;
+    public static List<BlockPos> SPAWNS = new ArrayList<>();
     public static ServerLevel overworld;
 
     public static void init(){
+        SPAWNS.add(new BlockPos(100, 100, 100));
         ServerLifecycleEvents.SERVER_STARTED.register(server -> { //bc server can't be accessed until after server started
             overworld = server.overworld();
             BlockPos worldSpawn = overworld.getRespawnData().pos();
             System.out.println("World spawn: " + worldSpawn);
+            SPAWNS.clear();
             SPAWNS = generateSpawns(worldSpawn, 1000, 4); //radius, numSpawns
             System.out.println("New spawns: " + SPAWNS);
         });
