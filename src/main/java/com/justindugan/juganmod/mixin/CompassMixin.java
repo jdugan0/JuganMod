@@ -5,6 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.LodestoneTracker;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -12,12 +13,15 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.Level;
 
 import java.util.Optional;
+
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -74,17 +78,17 @@ public class CompassMixin {
     }
 
     @Inject(method = "inventoryTick", at = @At("TAIL"))
-    private void inventoryTick(ItemStack stack, Level level, Entity entity, InteractionHand hand, CallbackInfo ci) {
+    private void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot, boolean selected, CallbackInfo ci)  {
         {
             if (!(entity instanceof Player player))
                 return;
             player = (Player) entity;
 
-            if (!(player.getItemInHand(hand).getItem() instanceof CompassItem))
+            if (!(itemStack.getItem() instanceof CompassItem))
                 return;
-            if (level.isClientSide())
+            if (serverLevel.isClientSide())
                 return;
-            ItemStack stack2 = player.getItemInHand(hand);
+            ItemStack stack2 = itemStack;
             if (stack2.has(DataComponents.LODESTONE_TRACKER))
                 return;
 
@@ -96,7 +100,7 @@ public class CompassMixin {
 
             // Update the lodestone tracker to point to the new target
             BlockPos target = CustomSpawns.SPAWNS.get(mode);
-            LodestoneTracker tracker = new LodestoneTracker(Optional.of(GlobalPos.of(level.dimension(), target)),
+            LodestoneTracker tracker = new LodestoneTracker(Optional.of(GlobalPos.of(serverLevel.dimension(), target)),
                     false);
             stack2.set(DataComponents.LODESTONE_TRACKER, tracker);
 
