@@ -102,7 +102,7 @@ public final class NewVillagerOffers {
                             new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 1, 0, 0.04f));
         });
 
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 2, factories -> {
             factories.add((lvl, entity, random) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 24),
                     EnchantmentHelper.enchantItem(
@@ -113,7 +113,7 @@ public final class NewVillagerOffers {
                             java.util.Optional.empty()),
                     3, 10, 0.05f));
         });
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
             factories.add((lvl, entity, random) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 24),
                     EnchantmentHelper.enchantItem(
@@ -124,7 +124,7 @@ public final class NewVillagerOffers {
                             java.util.Optional.empty()),
                     3, 10, 0.05f));
         });
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
             factories.add((lvl, entity, random) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 24),
                     EnchantmentHelper.enchantItem(
