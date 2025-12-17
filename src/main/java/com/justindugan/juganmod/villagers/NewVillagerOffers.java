@@ -109,27 +109,10 @@ public final class NewVillagerOffers {
                             random,
                             new ItemStack(Items.BOOK),
                             5,
-                            entity.level().registryAccess()
-                                    .lookupOrThrow(Registries.ENCHANTMENT)
-                                    .listElements()
-                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                            entity.level().registryAccess(),
+                            java.util.Optional.empty()),
                     3, 10, 0.05f));
         });
-
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
-            factories.add((lvl, entity, random) -> new MerchantOffer(
-                    new ItemCost(Items.EMERALD, 24),
-                    EnchantmentHelper.enchantItem(
-                            random,
-                            new ItemStack(Items.BOOK),
-                            5,
-                            entity.level().registryAccess()
-                                    .lookupOrThrow(Registries.ENCHANTMENT)
-                                    .listElements()
-                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
-                    3, 10, 0.05f));
-        });
-
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
             factories.add((lvl, entity, random) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 24),
@@ -137,27 +120,10 @@ public final class NewVillagerOffers {
                             random,
                             new ItemStack(Items.BOOK),
                             10,
-                            entity.level().registryAccess()
-                                    .lookupOrThrow(Registries.ENCHANTMENT)
-                                    .listElements()
-                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                            entity.level().registryAccess(),
+                            java.util.Optional.empty()),
                     3, 10, 0.05f));
         });
-
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
-            factories.add((lvl, entity, random) -> new MerchantOffer(
-                    new ItemCost(Items.EMERALD, 24),
-                    EnchantmentHelper.enchantItem(
-                            random,
-                            new ItemStack(Items.BOOK),
-                            10,
-                            entity.level().registryAccess()
-                                    .lookupOrThrow(Registries.ENCHANTMENT)
-                                    .listElements()
-                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
-                    3, 10, 0.05f));
-        });
-
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
             factories.add((lvl, entity, random) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 24),
@@ -165,10 +131,8 @@ public final class NewVillagerOffers {
                             random,
                             new ItemStack(Items.BOOK),
                             15,
-                            entity.level().registryAccess()
-                                    .lookupOrThrow(Registries.ENCHANTMENT)
-                                    .listElements()
-                                    .map(h -> (Holder<Enchantment>) (Holder<?>) h)),
+                            entity.level().registryAccess(),
+                            java.util.Optional.empty()),
                     3, 10, 0.05f));
         });
 
