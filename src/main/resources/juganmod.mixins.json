@@ -5,7 +5,9 @@
 	"mixins": [
 		"AnvilMenuMixin",
 		"EnchantmentMenuMixin",
-		"DisableVanillaEnchantedBookTradeMixin"
+		"DisableVanillaEnchantedBookTradeMixin",
+		"CompassMixin",
+		"CompassMixinInit"
 	],
 	"injectors": {
 		"defaultRequire": 1

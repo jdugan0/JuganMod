@@ -46,7 +46,7 @@ public class PlayerSpawnHandler {
             ServerPlayer player = handler.getPlayer();
             SavedSpawns save = SavedSpawns.get(server);
             if (!save.contains(player.getUUID())) {
-                BlockPos spawnPosition = CustomSpawns.SPAWNS.get(save.size() % CustomSpawns.SPAWNS.size()); // spawns.size()->#players,
+                BlockPos spawnPosition = CustomSpawns.SPAWNS.get(save.size() % CustomSpawns.SPAWNS.size()); // save.size()->#players,
                                                                                                             // SPAWNS.size()->#spawn
                                                                                                             // points
                 save.setSpawn(player.getUUID(), spawnPosition);
