@@ -32,48 +32,32 @@ import com.justindugan.juganmod.ModDataComponents;
 import com.justindugan.juganmod.spawns.CustomSpawns;
 import com.justindugan.juganmod.spawns.SavedSpawns;
 
-@Mixin(Item.class)
-public class CompassMixin {
-
-    @Inject(method = "use", at = @At("HEAD"))
-    private void compassCycle(Level level, Player player, InteractionHand hand,
-            CallbackInfoReturnable<InteractionResult> cir) {
-        if (!(player.getItemInHand(hand).getItem() instanceof CompassItem))
+@Mixin(CompassItem.class)
+public class CompassMixinInit {
+    @Inject(method = "inventoryTick", at = @At("TAIL"))
+    private void inventoryTick(ItemStack stack,
+            ServerLevel level,
+            Entity entity,
+            @Nullable EquipmentSlot slot,
+            CallbackInfo ci) {
+        if (!(entity instanceof Player player))
             return;
         if (level.isClientSide())
             return;
-        ItemStack stack = player.getItemInHand(hand);
+        if (!(stack.getItem() instanceof CompassItem))
+            return;
+        if (stack.has(DataComponents.LODESTONE_TRACKER))
+            return;
 
-        int mode = stack.getOrDefault(ModDataComponents.COMPASS_MODE, 0);
-        mode = (mode + 1) % 4;
+        SavedSpawns save = SavedSpawns.get(level.getServer());
+        int mode = CustomSpawns.SPAWNS.indexOf(save.getSpawn(player.getUUID()));
+        if (mode < 0)
+            mode = 0;
+
         stack.set(ModDataComponents.COMPASS_MODE, mode);
 
-        System.out.println("Compass is now pointing towards: " + mode);
-
-        // Update the lodestone tracker to point to the new target
         BlockPos target = CustomSpawns.SPAWNS.get(mode);
-        LodestoneTracker tracker = new LodestoneTracker(Optional.of(GlobalPos.of(level.dimension(), target)), false);
-        stack.set(DataComponents.LODESTONE_TRACKER, tracker);
-
-        int color = 0x00FF00;
-        switch (mode) {
-            case 0:
-                color = 0x00FF00;
-                break;
-            case 1:
-                color = 0xFFFF00;
-                break;
-            case 2:
-                color = 0xFF0000;
-                break;
-            case 3:
-                color = 0x6666FF;
-                break;
-        }
-
-        Component actionBar = Component.literal("Compass now pointing to Spawn " + (mode + 1))
-                .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)));
-        player.displayClientMessage(actionBar, true);
-
+        stack.set(DataComponents.LODESTONE_TRACKER,
+                new LodestoneTracker(Optional.of(GlobalPos.of(level.dimension(), target)), false));
     }
 }
