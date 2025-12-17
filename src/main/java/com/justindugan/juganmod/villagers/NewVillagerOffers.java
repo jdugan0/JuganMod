@@ -58,7 +58,8 @@ public final class NewVillagerOffers {
             spec(Enchantments.MULTISHOT, 1, 2, 22, 32, 0, 0),
             spec(Enchantments.CHANNELING, 1, 2, 24, 36, 0, 0),
             spec(Enchantments.RIPTIDE, 1, 3, 18, 28, 6, 9),
-            spec(Enchantments.INFINITY, 1, 2, 26, 40, 0, 0));
+            spec(Enchantments.INFINITY, 1, 2, 26, 40, 0, 0),
+            spec(Enchantments.LUNGE, 1, 3, 26, 40, 6, 9));
 
     private static final List<EnchantSpec> WANDERING_RARE = List.of(
             spec(Enchantments.MENDING, 1, 2, 34, 46, 0, 0),
