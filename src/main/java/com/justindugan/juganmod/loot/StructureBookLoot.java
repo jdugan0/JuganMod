@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -26,55 +27,61 @@ public final class StructureBookLoot {
         private StructureBookLoot() {
         }
 
-        private static final float DEFAULT_COMMON_CHANCE = 0.3f;
+        private static final float DEFAULT_COMMON_CHANCE = 0.25f;
         private static final float DEFAULT_RARE_CHANCE = 0.08f;
         private static final int DEFAULT_COMMON_ROLLS = 5;
         private static final int DEFAULT_RARE_ROLLS = 1;
 
         public static void init() {
                 LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-                        Identifier id = key.identifier();
+                        if (!source.isBuiltin())
+                                return;
 
-                        StructureBooks cfg = BOOKS_BY_TABLE.get(id);
+                        StructureBooks cfg = BOOKS_BY_TABLE.get(key);
                         if (cfg == null)
                                 return;
 
                         if (!cfg.common().isEmpty() && cfg.commonChance() > 0f) {
-                                tableBuilder.withPool(buildBookPool(registries, cfg.commonChance(),
-                                                DEFAULT_COMMON_ROLLS, cfg.common()));
+                                tableBuilder.withPool(buildBookPool(
+                                                registries, cfg.commonChance(), DEFAULT_COMMON_ROLLS, cfg.common()));
                         }
+
                         if (!cfg.rare().isEmpty() && cfg.rareChance() > 0f) {
-                                tableBuilder.withPool(buildBookPool(registries, cfg.rareChance(), DEFAULT_RARE_ROLLS,
-                                                cfg.rare()));
+                                tableBuilder.withPool(buildBookPool(
+                                                registries, cfg.rareChance(), DEFAULT_RARE_ROLLS, cfg.rare()));
                         }
                 });
         }
 
-        private record StructureBooks(float commonChance, float rareChance, List<BookSpec> common,
-                        List<BookSpec> rare) {
+        private record StructureBooks(float commonChance, float rareChance,
+                        List<BookSpec> common, List<BookSpec> rare) {
         }
 
-        private record BookSpec(ResourceKey<Enchantment> enchant, NumberProvider level, int weight) {
+        private record BookSpec(ResourceKey<Enchantment> enchant,
+                        NumberProvider level,
+                        int weight) {
         }
 
         private static LootPool.Builder buildBookPool(
-                        net.minecraft.core.HolderLookup.Provider registries,
+                        HolderLookup.Provider registries,
                         float poolChance,
                         int rolls,
                         List<BookSpec> books) {
+                var enchLookup = registries.lookupOrThrow(Registries.ENCHANTMENT);
+
                 LootPool.Builder pool = LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(rolls))
                                 .when(LootItemRandomChanceCondition.randomChance(poolChance));
 
                 for (BookSpec spec : books) {
-                        Holder<Enchantment> ench = registries.lookupOrThrow(Registries.ENCHANTMENT)
-                                        .getOrThrow(spec.enchant());
+                        Holder<Enchantment> ench = enchLookup.getOrThrow(spec.enchant());
 
                         pool.add(LootItem.lootTableItem(Items.ENCHANTED_BOOK)
                                         .setWeight(spec.weight())
                                         .apply(new SetEnchantmentsFunction.Builder(false)
                                                         .withEnchantment(ench, spec.level())));
                 }
+
                 return pool;
         }
 
@@ -86,6 +93,7 @@ public final class StructureBookLoot {
                 return UniformGenerator.between(min, max);
         }
 
+        // IMPORTANT: key this map by the SAME type you receive in the callback: `key`
         private static final Map<ResourceKey<LootTable>, StructureBooks> BOOKS_BY_TABLE = Map.ofEntries(
                         // igloo_chest: Frost Walker I–II; Protection III; Silk Touch I
                         Map.entry(BuiltInLootTables.IGLOO_CHEST, new StructureBooks(
