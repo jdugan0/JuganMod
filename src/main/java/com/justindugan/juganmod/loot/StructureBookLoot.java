@@ -27,9 +27,9 @@ public final class StructureBookLoot {
         private StructureBookLoot() {
         }
 
-        private static final float DEFAULT_COMMON_CHANCE = 0.25f;
-        private static final float DEFAULT_RARE_CHANCE = 0.08f;
-        private static final int DEFAULT_COMMON_ROLLS = 5;
+        private static final float DEFAULT_COMMON_CHANCE = 0.1f;
+        private static final float DEFAULT_RARE_CHANCE = 0.03f;
+        private static final int DEFAULT_COMMON_ROLLS = 2;
         private static final int DEFAULT_RARE_ROLLS = 1;
 
         public static void init() {
