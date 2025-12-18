@@ -34,17 +34,6 @@ public abstract class EnchantmentMenuMixin {
         List<EnchantmentInstance> original = cir.getReturnValue();
         if (original.isEmpty())
             return;
-
-        int cap = EnchantCapRules.getCap(stack);
-        if (cap <= 0)
-            return;
-
-        int already = EnchantCapRules.countItemEnchants(stack, false);
-        int remaining = Math.max(0, cap - already);
-        if (remaining == 0) {
-            cir.setReturnValue(List.of());
-            return;
-        }
         List<EnchantmentInstance> filtered = original.stream().map(ei -> {
             int max = EnchantTableRules.maxTableLevel(ei.enchantment());
             int chance = 15 + (ei.level() - 25) * 5;
