@@ -10,7 +10,7 @@ public final class InstallerMain {
     public static void main(String[] args) throws Exception {
         String packName = "Jugan Pack";
         String packId = "juganpack";
-        String mcVersion = "1.21.1";
+        String mcVersion = "1.21.11";
         String loaderVersion = "0.15.11";
 
         Path workDir = Paths.get("").toAbsolutePath();
