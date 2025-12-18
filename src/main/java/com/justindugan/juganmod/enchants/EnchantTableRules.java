@@ -36,6 +36,12 @@ public final class EnchantTableRules {
     if (enchantment.is(Enchantments.SWEEPING_EDGE))
       return Math.min(vanillaMax, 2);
 
+    if (enchantment.is(Enchantments.KNOCKBACK))
+      return Math.min(vanillaMax, 1);
+
+    if (enchantment.is(Enchantments.FIRE_ASPECT))
+      return Math.min(vanillaMax, 1);
+
     if (enchantment.is(Enchantments.QUICK_CHARGE))
       return Math.min(vanillaMax, 2);
 
