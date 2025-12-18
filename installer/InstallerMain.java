@@ -31,10 +31,13 @@ public final class InstallerMain {
         Path gameDir = pickGameDir(mcDir.resolve(packId));
         Files.createDirectories(gameDir);
 
-        copyDir(modsSrc, gameDir.resolve("mods"));
-        if (Files.isDirectory(configSrc)) copyDir(configSrc, gameDir.resolve("config"));
-        if (Files.isDirectory(rpSrc)) copyDir(rpSrc, gameDir.resolve("resourcepacks"));
-        if (Files.isRegularFile(optionsSrc)) copyFile(optionsSrc, gameDir.resolve("options.txt"));
+        replaceDir(modsSrc, gameDir.resolve("mods"));
+        if (Files.isDirectory(configSrc))
+            replaceDir(configSrc, gameDir.resolve("config"));
+        if (Files.isDirectory(rpSrc))
+            replaceDir(rpSrc, gameDir.resolve("resourcepacks"));
+        if (Files.isRegularFile(optionsSrc))
+            copyFile(optionsSrc, gameDir.resolve("options.txt"));
 
         String lastVersionId = "fabric-loader-" + loaderVersion + "-" + mcVersion;
         addLauncherProfile(mcDir, packName, lastVersionId, gameDir);
@@ -43,7 +46,8 @@ public final class InstallerMain {
         System.out.println("Open the Minecraft Launcher and select profile: " + packName);
     }
 
-    private static void runFabricInstallerNoProfile(Path installerJar, Path mcDir, String mcVersion, String loaderVersion) throws Exception {
+    private static void runFabricInstallerNoProfile(Path installerJar, Path mcDir, String mcVersion,
+            String loaderVersion) throws Exception {
         List<String> cmd = List.of(
                 javaBin(),
                 "-jar", installerJar.toString(),
@@ -51,23 +55,26 @@ public final class InstallerMain {
                 "-dir", mcDir.toString(),
                 "-mcversion", mcVersion,
                 "-loader", loaderVersion,
-                "-noprofile"
-        );
+                "-noprofile");
 
         ProcessBuilder pb = new ProcessBuilder(cmd);
         pb.redirectErrorStream(true);
         Process p = pb.start();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
-            while ((line = br.readLine()) != null) System.out.println(line);
+            while ((line = br.readLine()) != null)
+                System.out.println(line);
         }
 
         int code = p.waitFor();
-        if (code != 0) fatal("Fabric installer failed with exit code " + code);
+        if (code != 0)
+            fatal("Fabric installer failed with exit code " + code);
     }
 
-    private static void addLauncherProfile(Path mcDir, String packName, String lastVersionId, Path gameDir) throws IOException {
+    private static void addLauncherProfile(Path mcDir, String packName, String lastVersionId, Path gameDir)
+            throws IOException {
         Path profilesPath = mcDir.resolve("launcher_profiles.json");
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -89,7 +96,8 @@ public final class InstallerMain {
             if (e.getValue().isJsonObject()) {
                 JsonObject p = e.getValue().getAsJsonObject();
                 if (packName.equals(optString(p, "name"))) {
-                    fatal("A launcher profile named '" + packName + "' already exists. Rename packName or delete that profile.");
+                    fatal("A launcher profile named '" + packName
+                            + "' already exists. Rename packName or delete that profile.");
                 }
             }
         }
@@ -112,15 +120,39 @@ public final class InstallerMain {
                 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    private static void deleteDirectory(Path dir) throws IOException {
+        if (!Files.exists(dir))
+            return;
+        try (var walk = Files.walk(dir)) {
+            walk.sorted(Comparator.reverseOrder()).forEach(p -> {
+                try {
+                    Files.deleteIfExists(p);
+                } catch (IOException e) {
+                    throw new UncheckedIOException(e);
+                }
+            });
+        } catch (UncheckedIOException e) {
+            throw e.getCause();
+        }
+    }
+
+    private static void replaceDir(Path src, Path dst) throws IOException {
+        deleteDirectory(dst);
+        Files.createDirectories(dst);
+        copyDir(src, dst);
+    }
+
     private static String optString(JsonObject o, String key) {
         return o.has(key) && o.get(key).isJsonPrimitive() ? o.get(key).getAsString() : "";
     }
 
     private static Path pickGameDir(Path base) throws IOException {
-        if (!Files.exists(base)) return base;
+        if (!Files.exists(base))
+            return base;
         for (int i = 2; i < 1000; i++) {
             Path p = Paths.get(base.toString() + "-" + i);
-            if (!Files.exists(p)) return p;
+            if (!Files.exists(p))
+                return p;
         }
         throw new IOException("Could not choose a free gameDir name.");
     }
@@ -148,11 +180,13 @@ public final class InstallerMain {
     }
 
     private static void requireFile(Path p, String msg) {
-        if (!Files.isRegularFile(p)) fatal(msg);
+        if (!Files.isRegularFile(p))
+            fatal(msg);
     }
 
     private static void requireDir(Path p, String msg) {
-        if (!Files.isDirectory(p)) fatal(msg);
+        if (!Files.isDirectory(p))
+            fatal(msg);
     }
 
     private static String javaBin() {
@@ -171,7 +205,8 @@ public final class InstallerMain {
 
         if (os.contains("win")) {
             String appdata = System.getenv("APPDATA");
-            if (appdata != null) return Paths.get(appdata, ".minecraft");
+            if (appdata != null)
+                return Paths.get(appdata, ".minecraft");
         } else if (os.contains("mac")) {
             return Paths.get(home, "Library", "Application Support", "minecraft");
         }
