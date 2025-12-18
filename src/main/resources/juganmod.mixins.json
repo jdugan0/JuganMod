@@ -12,7 +12,8 @@
 		"EnchantmentCompatibilityMixin",
 		"ItemStackBaneCleanseMixin",
 		"ProtectionStackingCompatibilityMixin",
-		"ProtectionContributionMixin"
+		"ProtectionContributionMixin",
+		"GrindstoneBookMixMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
