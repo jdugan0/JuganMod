@@ -21,7 +21,7 @@ public abstract class EnchantmentMenuMixin {
     @Inject(method = "getEnchantmentList", at = @At("RETURN"), cancellable = true)
     private void jugan$filterEnchantmentTableRoll(
             RegistryAccess registryAccess, ItemStack stack, int option, int cost,
-            CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
+            CallbackInfoReturnable<List<EnchantmentInstance>> cir) {  
 
         List<EnchantmentInstance> original = cir.getReturnValue();
         if (original.isEmpty())

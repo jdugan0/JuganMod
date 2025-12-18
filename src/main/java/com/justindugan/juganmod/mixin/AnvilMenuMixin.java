@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.justindugan.juganmod.ModComponents;
@@ -12,6 +13,7 @@ import com.justindugan.juganmod.enchants.EnchantCapRules;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.item.ItemStack;
@@ -22,8 +24,13 @@ public abstract class AnvilMenuMixin {
   @Final
   private DataSlot cost;
 
-  private static final int MAX_COST = 35;
-  private static final int REPAIR_COST_CAP = 2;
+  private static final int MAX_COST = 100;
+  private static final int REPAIR_COST_CAP = 20;
+
+  @Redirect(method = "createResult()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;hasInfiniteMaterials()Z", ordinal = 1), require = 1)
+  private boolean jugan$disableTooExpensiveCheck(Player player) {
+    return true;
+  }
 
   @Inject(method = "createResult", at = @At("TAIL"))
   private void jugan$afterCreateResult(CallbackInfo ci) {
