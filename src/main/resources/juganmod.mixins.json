@@ -11,7 +11,8 @@
 		"BaneDamageScaleMixin",
 		"EnchantmentCompatibilityMixin",
 		"ItemStackBaneCleanseMixin",
-		"ProtectionStackingCompatibilityMixin"
+		"ProtectionStackingCompatibilityMixin",
+		"ProtectionContributionMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
