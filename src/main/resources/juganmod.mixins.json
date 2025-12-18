@@ -7,7 +7,12 @@
 		"EnchantmentMenuMixin",
 		"DisableVanillaEnchantedBookTradeMixin",
 		"CompassMixin",
-		"CompassMixinInit"
+		"CompassMixinInit",
+		"BaneDamageScaleMixin",
+		"EnchantmentCompatibilityMixin",
+		"ItemStackBaneCleanseMixin",
+		"ProtectionStackingCompatibilityMixin",
+		"ProtectionContributionMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

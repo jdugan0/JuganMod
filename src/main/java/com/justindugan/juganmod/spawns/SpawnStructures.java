@@ -37,6 +37,10 @@ public class SpawnStructures {
         placeStructure(world, Identifier.fromNamespaceAndPath("juganmod", "spawn_green"), CustomSpawns.SPAWNS.get(1));
         placeStructure(world, Identifier.fromNamespaceAndPath("juganmod", "spawn_orange"), CustomSpawns.SPAWNS.get(2));
         placeStructure(world, Identifier.fromNamespaceAndPath("juganmod", "spawn_blue"), CustomSpawns.SPAWNS.get(3));
+
+        BlockPos center = new BlockPos(0, 0, 0);
+        center = CustomSpawns.findSafeY((ServerLevel)world, center);
+        placeStructure(world, Identifier.fromNamespaceAndPath("juganmod", "stone_hub"), center);
         state.placed = true;
         state.setDirty();
     }
