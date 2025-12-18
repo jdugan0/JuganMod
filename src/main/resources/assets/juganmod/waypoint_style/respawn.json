@@ -1,6 +1,6 @@
 {
   "near_distance": 64,
-  "far_distance": 192,
+  "far_distance": 300,
   "sprites": [
     "juganmod:icon_bed1",
     "juganmod:icon_bed2",
