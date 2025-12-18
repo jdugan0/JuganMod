@@ -10,7 +10,8 @@
 		"CompassMixinInit",
 		"BaneDamageScaleMixin",
 		"EnchantmentCompatibilityMixin",
-		"ItemStackBaneCleanseMixin"
+		"ItemStackBaneCleanseMixin",
+		"ProtectionStackingCompatibilityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
