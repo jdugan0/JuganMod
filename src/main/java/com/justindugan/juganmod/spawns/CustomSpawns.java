@@ -33,6 +33,7 @@ public class CustomSpawns {
             int z = worldSpawn.getZ() + (int)(radius * Math.sin(angle));
             BlockPos newSpawn = new BlockPos(x, worldSpawn.getY(), z);
             newSpawn = findSafeY(overworld, newSpawn);
+            newSpawn = newSpawn.offset(0, 1, 0);
             spawnPoints.add(newSpawn);
         }
         return spawnPoints;

@@ -2,6 +2,10 @@
   "near_distance": 64,
   "far_distance": 192,
   "sprites": [
-    "juganmod:respawn_icon"
+    "juganmod:icon_bed1",
+    "juganmod:icon_bed2",
+    "juganmod:icon_bed3",
+    "juganmod:icon_bed4",
+    "juganmod:icon_empty"
   ]
 }
