@@ -200,6 +200,17 @@ public abstract class GrindstoneBookMixMixin {
     put(m, rk("binding_curse"), rk("protection"), rk("binding_curse"));
     put(m, rk("vanishing_curse"), rk("protection"), rk("vanishing_curse"));
 
+    put(m, rk("fire_aspect"), rk("protection"), rk("fire_protection"));
+    put(m, rk("thorns"), rk("projectile_protection"), rk("projectile_protection"));
+    put(m, rk("aqua_affinity"), rk("blast_protection"), rk("blast_protection"));
+
+    put(m, rk("frost_walker"), rk("feather_falling"), rk("depth_strider"));
+    put(m, rk("depth_strider"), rk("respiration"), rk("aqua_affinity"));
+    put(m, rk("bane_of_arthropods"), rk("knockback"), rk("sweeping_edge"));
+    put(m, rk("smite"), rk("fire_aspect"), rk("fire_aspect"));
+    put(m, rk("power"), rk("punch"), rk("flame"));
+    put(m, rk("punch"), rk("flame"), rk("punch"));
+
     return m;
   }
 
