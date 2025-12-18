@@ -44,18 +44,6 @@ public abstract class EnchantmentMenuMixin {
             return new EnchantmentInstance(ei.enchantment(), max);
         }).toList();
 
-        if (filtered.isEmpty()) {
-            cir.setReturnValue(List.of());
-            return;
-        }
-
-        if (filtered.size() > remaining) {
-            filtered = filtered.stream()
-                    .sorted((a, b) -> Integer.compare(b.level(), a.level()))
-                    .limit(remaining)
-                    .toList();
-        }
-
         cir.setReturnValue(filtered);
     }
 }
