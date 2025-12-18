@@ -25,7 +25,7 @@ public abstract class AnvilMenuMixin {
   private DataSlot cost;
 
   private static final int MAX_COST = 100;
-  private static final int REPAIR_COST_CAP = 20;
+  private static final int REPAIR_COST_CAP = 10000;
 
   @Redirect(method = "createResult()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;hasInfiniteMaterials()Z", ordinal = 1), require = 1)
   private boolean jugan$disableTooExpensiveCheck(Player player) {
