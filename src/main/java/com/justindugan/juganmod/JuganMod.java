@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.justindugan.juganmod.loot.StructureBookLoot;
 import com.justindugan.juganmod.spawns.CustomSpawns;
 import com.justindugan.juganmod.spawns.PlayerSpawnHandler;
+import com.justindugan.juganmod.spawns.SpawnStructures;
 import com.justindugan.juganmod.villagers.NewVillagerOffers;
 import com.justindugan.juganmod.waypoints.PlayerMarkerHooks;
 import com.justindugan.juganmod.waypoints.WaypointManager;
@@ -36,8 +37,9 @@ public class JuganMod implements ModInitializer {
 		PlayerSpawnHandler.init();
 		WaypointManager.init();
 		NewVillagerOffers.init();
-    ModDataComponents.register();
+    	ModDataComponents.register();
 		ModComponents.init();
 		StructureBookLoot.init();
+		SpawnStructures.init();
 	}
 }

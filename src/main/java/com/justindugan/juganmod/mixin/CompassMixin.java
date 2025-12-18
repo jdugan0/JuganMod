@@ -56,22 +56,27 @@ public class CompassMixin {
         stack.set(DataComponents.LODESTONE_TRACKER, tracker);
 
         int color = 0x00FF00;
+        String name = "";
         switch (mode) {
             case 0:
-                color = 0x00FF00;
+                color = 0xFFC5D3;
+                name = "Cherry";
                 break;
             case 1:
-                color = 0xFFFF00;
+                color = 0x40FFa9;
+                name = "Copper";
                 break;
             case 2:
-                color = 0xFF0000;
+                color = 0xff8936;
+                name = "Magma";
                 break;
             case 3:
-                color = 0x6666FF;
+                color = 0x5498ff;
+                name = "Aqua";
                 break;
         }
 
-        Component actionBar = Component.literal("Compass now pointing to Spawn " + (mode + 1))
+        Component actionBar = Component.literal("Compass now pointing to " + name + " Shrine")
                 .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color)));
         player.displayClientMessage(actionBar, true);
 
