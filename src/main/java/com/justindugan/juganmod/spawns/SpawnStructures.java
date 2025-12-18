@@ -49,7 +49,7 @@ public class SpawnStructures {
 
         StructurePlaceSettings settings = new StructurePlaceSettings();
 
-        template.placeInWorld(world, pos.offset(-3, -2, -3), pos, settings,world.random,Block.UPDATE_ALL);
+        template.placeInWorld(world, pos.offset(-4, -2, -4), pos, settings,world.random,Block.UPDATE_ALL);
         System.out.println("Placed spawn structures at custom spawns.");
         //
     }
