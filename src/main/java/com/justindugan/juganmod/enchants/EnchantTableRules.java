@@ -11,7 +11,7 @@ public final class EnchantTableRules {
 
   public static int maxTableLevel(Holder<Enchantment> enchantment) {
     int vanillaMax = enchantment.value().getMaxLevel();
-    
+
     if (enchantment.is(Enchantments.SHARPNESS))
       return Math.min(vanillaMax, 4);
 
@@ -26,9 +26,21 @@ public final class EnchantTableRules {
 
     if (enchantment.is(Enchantments.POWER))
       return Math.min(vanillaMax, 4);
-    
+
     if (enchantment.is(Enchantments.UNBREAKING))
       return Math.min(vanillaMax, 2);
+
+    if (enchantment.is(Enchantments.LOOTING))
+      return Math.min(vanillaMax, 2);
+
+    if (enchantment.is(Enchantments.SWEEPING_EDGE))
+      return Math.min(vanillaMax, 2);
+
+    if (enchantment.is(Enchantments.QUICK_CHARGE))
+      return Math.min(vanillaMax, 2);
+
+    if (enchantment.is(Enchantments.FEATHER_FALLING))
+      return Math.min(vanillaMax, 3);
 
     return vanillaMax;
   }
