@@ -30,9 +30,6 @@ public final class InstallerMain {
 
         Path gameDir = mcDir.resolve(packId);
 
-        deleteDirectory(gameDir);
-        Files.createDirectories(gameDir);
-
         replaceDir(modsSrc, gameDir.resolve("mods"));
         if (Files.isDirectory(configSrc))
             replaceDir(configSrc, gameDir.resolve("config"));
