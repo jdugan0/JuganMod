@@ -75,13 +75,11 @@ public abstract class GrindstoneBookMixMixin {
     if (outMax <= 0)
       return;
 
-    float na = (float) ea.level / (float) ea.maxLevel;
-    float nb = (float) eb.level / (float) eb.maxLevel;
-    float normalized = (na + nb) * 0.5f;
-    if (outKey.equals(ea.key) || outKey.equals(eb.key))
-      normalized *= 0.85f;
+    double na = ea.level / ea.maxLevel;
+    double nb = eb.level / eb.maxLevel;
+    int normalized = (int)((na + nb) * 0.5);
 
-    int outLevel = clamp(Math.round(normalized * outMax), 1, outMax);
+    int outLevel = (normalized * outMax);
 
     ItemStack outBook = EnchantmentHelper.createBook(new EnchantmentInstance(out, outLevel));
 
