@@ -49,6 +49,7 @@ public abstract class GrindstoneBookMixMixin {
   private void jugan$mixBooks(CallbackInfo ci) {
     ItemStack a = repairSlots.getItem(0);
     ItemStack b = repairSlots.getItem(1);
+
     if (!isSingleEnchantedBook(a) || !isSingleEnchantedBook(b))
       return;
 
@@ -77,7 +78,7 @@ public abstract class GrindstoneBookMixMixin {
 
     double na = ea.level / ea.maxLevel;
     double nb = eb.level / eb.maxLevel;
-    int normalized = (int)((na + nb) * 0.5);
+    int normalized = (int) ((na + nb) * 0.5);
 
     int outLevel = (normalized * outMax);
 

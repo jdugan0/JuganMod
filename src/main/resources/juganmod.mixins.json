@@ -14,7 +14,10 @@
 		"ProtectionStackingCompatibilityMixin",
 		"ProtectionContributionMixin",
 		"GrindstoneBookMixMixin",
-		"CompassLodestoneBindMixin"
+		"CompassLodestoneBindMixin",
+		"GrindstoneMenuMixin",
+		"GrindstoneInputSlot1Mixin",
+		"GrindstoneInputSlot2Mixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
