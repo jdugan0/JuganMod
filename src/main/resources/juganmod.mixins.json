@@ -13,7 +13,8 @@
 		"ItemStackBaneCleanseMixin",
 		"ProtectionStackingCompatibilityMixin",
 		"ProtectionContributionMixin",
-		"GrindstoneBookMixMixin"
+		"GrindstoneBookMixMixin",
+		"CompassLodestoneBindMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

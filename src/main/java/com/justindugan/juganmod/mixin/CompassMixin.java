@@ -44,7 +44,12 @@ public class CompassMixin {
             return;
         ItemStack stack = player.getItemInHand(hand);
 
-        int mode = stack.getOrDefault(ModDataComponents.COMPASS_MODE, 0);
+        if (!stack.has(ModDataComponents.COMPASS_MODE))
+            return;
+
+        Integer mode = stack.get(ModDataComponents.COMPASS_MODE);
+        if (mode == null)
+            return;
         mode = (mode + 1) % 5;
         stack.set(ModDataComponents.COMPASS_MODE, mode);
 
@@ -52,10 +57,9 @@ public class CompassMixin {
 
         // Update the lodestone tracker to point to the new target
         BlockPos target = null;
-        if (mode != 4){
+        if (mode != 4) {
             target = CustomSpawns.SPAWNS.get(mode);
-        }
-        else{
+        } else {
             target = new BlockPos(0, 0, 0);
         }
         LodestoneTracker tracker = new LodestoneTracker(Optional.of(GlobalPos.of(level.dimension(), target)), false);
