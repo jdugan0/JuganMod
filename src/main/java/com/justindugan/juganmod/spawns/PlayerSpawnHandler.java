@@ -32,7 +32,6 @@ public class PlayerSpawnHandler {
                     return;
                 }
                 ServerLevel level = newPlayer.level().getServer().overworld();
-                level.getChunkAt(spawnPosition);
                 newPlayer.teleportTo(level,
                         spawnPosition.getX() + 0.5, spawnPosition.getY(), spawnPosition.getZ() + 0.5,
                         EnumSet.noneOf(Relative.class),
