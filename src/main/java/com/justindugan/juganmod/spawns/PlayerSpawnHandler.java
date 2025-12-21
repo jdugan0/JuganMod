@@ -50,8 +50,6 @@ public class PlayerSpawnHandler {
                                                                                                             // points
                 save.setSpawn(player.getUUID(), spawnPosition);
                 ServerLevel level = server.overworld();
-
-                level.getChunkAt(spawnPosition);
                 player.teleportTo(
                         level,
                         spawnPosition.getX() + 0.5, spawnPosition.getY(), spawnPosition.getZ() + 0.5,
