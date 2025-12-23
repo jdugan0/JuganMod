@@ -23,7 +23,8 @@ public abstract class AnvilMenuMixin {
   @Shadow
   @Final
   private DataSlot cost;
-
+  @Shadow
+  private int repairItemCountCost;
   private static final int MAX_COST = 65;
   private static final int REPAIR_COST_CAP = 10000;
 
@@ -102,6 +103,8 @@ public abstract class AnvilMenuMixin {
     single.set(enchantHolder, level);
 
     out.set(DataComponents.STORED_ENCHANTMENTS, single.toImmutable());
+
+    this.repairItemCountCost = 1;
 
     int xpCost = Math.min(MAX_COST, 8 + 2 * level);
     cost.set(xpCost);
