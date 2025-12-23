@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.justindugan.juganmod.loot.StructureBookLoot;
+import com.justindugan.juganmod.recipe.ModRecipeSerializers;
 import com.justindugan.juganmod.spawns.CustomSpawns;
 import com.justindugan.juganmod.spawns.PlayerSpawnHandler;
 import com.justindugan.juganmod.spawns.SpawnStructures;
@@ -41,5 +42,6 @@ public class JuganMod implements ModInitializer {
 		ModComponents.init();
 		StructureBookLoot.init();
 		SpawnStructures.init();
+		ModRecipeSerializers.init();
 	}
 }
