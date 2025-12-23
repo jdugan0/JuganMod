@@ -17,7 +17,8 @@
 		"CompassLodestoneBindMixin",
 		"GrindstoneMenuMixin",
 		"GrindstoneInputSlot1Mixin",
-		"GrindstoneInputSlot2Mixin"
+		"GrindstoneInputSlot2Mixin",
+		"HappyGhastSpeedMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
