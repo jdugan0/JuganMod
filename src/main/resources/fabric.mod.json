@@ -23,7 +23,10 @@
 		],
 		"client": [
 			"com.justindugan.juganmod.JuganModClient"
-		]
+		],
+		"fabric-datagen": [ 
+			"com.example.docs.datagen.ExampleModDataGenerator"
+		] 
 	},
 	"mixins": [
 		"juganmod.mixins.json",
