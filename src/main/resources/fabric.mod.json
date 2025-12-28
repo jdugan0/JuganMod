@@ -25,7 +25,7 @@
 			"com.justindugan.juganmod.JuganModClient"
 		],
 		"fabric-datagen": [ 
-			"com.example.docs.datagen.ExampleModDataGenerator"
+			"com.justindugan.juganmod.JuganModDataGenerator"
 		] 
 	},
 	"mixins": [
