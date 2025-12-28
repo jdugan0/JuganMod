@@ -40,7 +40,7 @@ public abstract class EnchantmentMenuMixin {
             return;
         List<EnchantmentInstance> filtered = original.stream().map(ei -> {
             int max = EnchantTableRules.maxTableLevel(ei.enchantment());
-            int chance = 15 + (cost - 25) * 5;
+            int chance = (cost - 10) * 5;
             if (this.random.nextInt(100) < chance) {
                 return ei;
             }
@@ -49,19 +49,18 @@ public abstract class EnchantmentMenuMixin {
             return new EnchantmentInstance(ei.enchantment(), max);
         }).toList();
 
-        if (cost == 30)
-            filtered = java.util.stream.Stream.concat(filtered.stream(),
-                    net.minecraft.world.item.enchantment.EnchantmentHelper
-                            .selectEnchantment(this.random, stack, cost,
-                                    registryAccess.lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT)
-                                            .listElements()
-                                            .map(h -> (net.minecraft.core.Holder<Enchantment>) (Object) h)
+        filtered = java.util.stream.Stream.concat(filtered.stream(),
+                net.minecraft.world.item.enchantment.EnchantmentHelper
+                        .selectEnchantment(this.random, stack, cost,
+                                registryAccess.lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT)
+                                        .listElements()
+                                        .map(h -> (net.minecraft.core.Holder<Enchantment>) (Object) h)
 
-                            )
-                            .stream()
-                            .filter(ei -> original.stream().noneMatch(x -> x.enchantment().equals(ei.enchantment())))
-                            .limit(1))
-                    .toList();
+                        )
+                        .stream()
+                        .filter(ei -> original.stream().noneMatch(x -> x.enchantment().equals(ei.enchantment())))
+                        .limit(1))
+                .toList();
 
         cir.setReturnValue(filtered);
     }
