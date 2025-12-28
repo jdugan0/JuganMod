@@ -40,7 +40,7 @@ public abstract class EnchantmentMenuMixin {
             return;
         List<EnchantmentInstance> filtered = original.stream().map(ei -> {
             int max = EnchantTableRules.maxTableLevel(ei.enchantment());
-            int chance = (cost - 10) * 5;
+            int chance = (cost - 10) * 7;
             if (this.random.nextInt(100) < chance) {
                 return ei;
             }
