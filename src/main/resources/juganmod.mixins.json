@@ -21,7 +21,11 @@
 		"HappyGhastSpeedMixin",
 		"LivingEntityClimbSpeedMixin",
 		"AreaHoeMixin",
-		"AreaBreakMixin"
+		"AreaBreakMixin",
+		"ScholarXpMultiplyMixin",
+		"ScholarEntityContextMixin",
+		"ScholarBlockContextMixin",
+		"ZombieVillagerAlwaysConvertMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
