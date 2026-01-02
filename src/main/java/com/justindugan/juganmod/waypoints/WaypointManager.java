@@ -73,7 +73,6 @@ public final class WaypointManager {
     static void sync(ServerPlayer p) {
         boolean night = DayNight.isNight(p.level());
         if (night) {
-            removeDeath(p);
             removeRespawn(p);
             return;
         }

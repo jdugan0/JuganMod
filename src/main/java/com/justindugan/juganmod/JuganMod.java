@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.justindugan.juganmod.loot.AreaTreasureLoot;
 import com.justindugan.juganmod.loot.StructureBookLoot;
 import com.justindugan.juganmod.recipe.ModRecipeSerializers;
 import com.justindugan.juganmod.spawns.CustomSpawns;
@@ -43,5 +44,6 @@ public class JuganMod implements ModInitializer {
 		StructureBookLoot.init();
 		SpawnStructures.init();
 		ModRecipeSerializers.init();
+		AreaTreasureLoot.init();
 	}
 }

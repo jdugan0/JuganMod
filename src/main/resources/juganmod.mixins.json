@@ -19,7 +19,9 @@
 		"GrindstoneInputSlot1Mixin",
 		"GrindstoneInputSlot2Mixin",
 		"HappyGhastSpeedMixin",
-		"LivingEntityClimbSpeedMixin"
+		"LivingEntityClimbSpeedMixin",
+		"AreaHoeMixin",
+		"AreaBreakMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
